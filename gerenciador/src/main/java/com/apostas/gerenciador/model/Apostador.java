@@ -18,6 +18,10 @@ public class Apostador {
     private String email;
     private Integer idade;
 
+    public Apostador(){
+
+    }
+
     public Apostador(DadosCadastroApostador dadosCadastroApostador){
         this.nome = dadosCadastroApostador.nome();
         this.email = dadosCadastroApostador.email();
