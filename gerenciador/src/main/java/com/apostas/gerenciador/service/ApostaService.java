@@ -4,6 +4,7 @@ import com.apostas.gerenciador.model.Aposta;
 import com.apostas.gerenciador.model.Apostador;
 import com.apostas.gerenciador.model.record.DadosCadastroAposta;
 import com.apostas.gerenciador.model.record.DadosListagemAposta;
+import com.apostas.gerenciador.model.record.DadosListagemNumeroAposta;
 import com.apostas.gerenciador.repository.ApostaRepository;
 import com.apostas.gerenciador.repository.ApostadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,8 @@ public class ApostaService {
         return apostas.stream().map(aposta -> (new DadosListagemAposta(aposta, aposta.getApostador()))).toList();
     }
 
-    public List<DadosListagemAposta> listarApostasDeUmApostador(Long idApostador){
+    public List<DadosListagemNumeroAposta> listarApostasDeUmApostador(Long idApostador){
         List<Aposta> apostasApostador = apostaRepository.findAllByApostadorId(idApostador);
-        return apostasApostador.stream().map(apostaApostador -> (new DadosListagemAposta(apostaApostador, apostaApostador.getApostador()))).toList();
-
+        return apostasApostador.stream().map(apostaApostador -> (new DadosListagemNumeroAposta(apostaApostador))).toList();
     }
 }

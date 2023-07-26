@@ -3,6 +3,7 @@ package com.apostas.gerenciador.controller;
 import com.apostas.gerenciador.model.Aposta;
 import com.apostas.gerenciador.model.record.DadosCadastroAposta;
 import com.apostas.gerenciador.model.record.DadosListagemAposta;
+import com.apostas.gerenciador.model.record.DadosListagemNumeroAposta;
 import com.apostas.gerenciador.service.ApostaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,8 +39,8 @@ public class ApostaController {
 
     @Operation(summary = "Lista apostas de um apostador")
     @GetMapping("/{idApostador}")
-    public ResponseEntity<List<DadosListagemAposta>> listarApostasApostador(@PathVariable("idApostador") Long idApostador){
-        List<DadosListagemAposta> apostasApostador = apostaService.listarApostasDeUmApostador(idApostador);
+    public ResponseEntity<List<DadosListagemNumeroAposta>> listarApostasApostador(@PathVariable("idApostador") Long idApostador){
+        List<DadosListagemNumeroAposta> apostasApostador = apostaService.listarApostasDeUmApostador(idApostador);
         return ResponseEntity.ok().body(apostasApostador);
     }
 
