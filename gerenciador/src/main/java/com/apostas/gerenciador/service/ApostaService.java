@@ -35,4 +35,10 @@ public class ApostaService {
         List<Aposta> apostas = apostaRepository.findAll();
         return apostas.stream().map(aposta -> (new DadosListagemAposta(aposta, aposta.getApostador()))).toList();
     }
+
+    public List<DadosListagemAposta> listarApostasDeUmApostador(Long idApostador){
+        List<Aposta> apostasApostador = apostaRepository.findAllByApostadorId(idApostador);
+        return apostasApostador.stream().map(apostaApostador -> (new DadosListagemAposta(apostaApostador, apostaApostador.getApostador()))).toList();
+
+    }
 }
