@@ -28,7 +28,7 @@ public class ApostaService {
         Optional<Apostador> apostadorEncontrado = apostadorRepository.findById(dadosCadastroAposta.idApostador());
         String numeroAposta = UUID.randomUUID().toString();
 
-        if (!apostadorEncontrado.isPresent()) {
+        if (apostadorEncontrado.isEmpty()) {
             throw new ApostadorNaoEncontrado();
         }
 
@@ -44,6 +44,11 @@ public class ApostaService {
     }
 
     public List<DadosListagemNumeroAposta> listarApostasDeUmApostador(Long idApostador){
+        Optional<Apostador> apostadorEncontrado = apostadorRepository.findById(idApostador);
+        if(apostadorEncontrado.isEmpty()){
+            throw  new ApostadorNaoEncontrado();
+        }
+
         List<Aposta> apostasApostador = apostaRepository.findAllByApostadorId(idApostador);
         return apostasApostador.stream().map(apostaApostador -> (new DadosListagemNumeroAposta(apostaApostador))).toList();
     }
